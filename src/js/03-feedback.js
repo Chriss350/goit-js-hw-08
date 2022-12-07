@@ -15,8 +15,6 @@ const lsSave = ev => {
 form.addEventListener('input', throttle(lsSave, 500));
 
 form.addEventListener('submit', ev => {
-  ev.preventDefault();
-
   const data = localStorage.getItem(LOCALSTORAGE_KEY);
 
   if (data === null) {
@@ -28,4 +26,14 @@ form.addEventListener('submit', ev => {
 
   localStorage.removeItem(LOCALSTORAGE_KEY);
   ev.currentTarget.reset();
+});
+
+window.addEventListener('load', () => {
+  const data = localStorage.getItem(LOCALSTORAGE_KEY);
+  const dataJSON = JSON.parse(data);
+
+  if (data != null) {
+    form.email.value = dataJSON.email;
+    form.message.value = dataJSON.message;
+  }
 });
