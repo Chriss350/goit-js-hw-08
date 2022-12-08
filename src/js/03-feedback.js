@@ -17,7 +17,7 @@ form.addEventListener('input', throttle(lsSave, 500));
 form.addEventListener('submit', ev => {
   const data = localStorage.getItem(LOCALSTORAGE_KEY);
 
-  if (data === null) {
+  if (form.email.value == '' || form.message.value == '') {
     return alert('Uzupełnij wszystkie pola formularza');
   }
   const dataJSON = JSON.parse(data);
@@ -32,7 +32,7 @@ window.addEventListener('load', () => {
   const data = localStorage.getItem(LOCALSTORAGE_KEY);
   const dataJSON = JSON.parse(data);
 
-  if (data != null) {
+  if (data != '') {
     form.email.value = dataJSON.email;
     form.message.value = dataJSON.message;
   }
